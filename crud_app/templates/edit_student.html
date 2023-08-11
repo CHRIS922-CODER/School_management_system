@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Student{% endblock %}
+
+{% block content %}
+    <h1>Edit Student</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Name:</label>
+            <input type="text" class="form-control" id="id_name" name="name" value="{{ student.name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="id_reg_no">Registration Number:</label>
+            <input type="text" class="form-control" id="id_reg_no" name="reg_no" value="{{ student.reg_no }}" required>
+        </div>
+        <div class="form-group">
+            <label for="id_course">Course:</label>
+{{ student.course_name }}
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+{% endblock %}

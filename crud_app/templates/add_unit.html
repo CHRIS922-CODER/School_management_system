@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+    <h1>Add Unit</h1>
+    <form method="post" class="form-inline">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="course_name">Course:</label>
+{{ form.course_name }}
+        </div>
+        <div class="form-group">
+            <label for="unit_code"> unit_code:</label>
+{{ form.unit_code }}
+        </div>
+
+        <div class="form-group">
+            <label for="title">title:</label>
+{{ form.title }}
+        </div>
+
+        <div class="form-group">
+            <label for="cat1">cat1:</label>
+{{ form.cat1 }}
+        </div>
+
+        <div class="form-group">
+            <label for="cat2">cat2:</label>
+{{ form.cat2 }}
+        </div>
+
+        <div class="form-group">
+            <label for="cat3">cat3:</label>
+{{ form.cat3 }}
+        </div>
+
+        <div class="form-group">
+            <label for="final_exam">final_exam:</label>
+{{ form.final_exam }}
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+{% endblock %}

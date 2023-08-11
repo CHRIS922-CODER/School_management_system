@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block title %}Add Student{% endblock %}
+ {% block content %}
+<h1>Add Marks</h1>
+<form method="post" class="d-flex flex-wrap">
+  {% csrf_token %}
+  <div class="form-group mb-2 mr-2">
+    <label for="student">Student:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="student"
+      name="student"
+      value="{{ student }}"
+      required
+    />
+  </div>
+
+  <div class="form-group mb-2 mr-2">
+    <label for="unit_code">Unit Code:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="unit_code"
+      name="unit_code"
+      value="{{ unit_code }}"
+      required
+    />
+  </div>
+
+  <div class="form-group mb-2 mr-2">
+    <label for="cat1">CAT1:</label>
+    {{ form.cat1 }}
+  </div>
+
+  <div class="form-group mb-2 mr-2">
+    <label for="cat2">CAT2:</label>
+    {{ form.cat2 }}
+  </div>
+
+  <div class="form-group mb-2 mr-2">
+    <label for="cat3">CAT3:</label>
+    {{ form.cat3 }}
+  </div>
+
+  <div class="form-group mb-2 mr-2">
+    <label for="exam_marks">Exam Marks:</label>
+    {{ form.exam_marks }}
+  </div>
+  <button type="submit" class="btn btn-primary mt-2">Save</button>
+</form>
+{% endblock %}

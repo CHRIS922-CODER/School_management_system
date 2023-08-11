@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> Marks Sheet</h1>
+<table class="table table-stripped">
+<tr>
+<th>Student Reg No</th>
+<th>Unit Code</th>
+<th>CAT1</th>
+<th>CAT2</th>
+<th>CAT3</th>
+<th>Final Exam</th>
+<th>Grade</th>
+</tr>
+{% for student in students %}
+<tr>
+<td>{{ student.student }}</td>
+<td>{{ student.unit_code }}</td>
+<td>{{ student.cat1 }}</td>
+<td>{{ student.cat2  }}</td>
+<td>{{ student.cat3 }}</td>
+<td>{{ student.exam_marks }}</td>
+<td>{{ student.grade }}</td>
+</tr>
+{% empty %}
+<tr>
+<td colspan="7">No grades found.</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

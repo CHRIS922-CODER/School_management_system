@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Detail{% endblock %}
+
+{% block content %}
+    <h1>Student Detail</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ student.name }}</h5>
+            <p class="card-text">Registration Number: {{ student.reg_no }}</p>
+            <p class="card-text">Course: {{ student.course_name }}</p>
+            <p class="card-text">Enrolled: <span id="enrolled-status">{% if student.enrolled %}Yes{% else %}No{% endif %}</span></p>
+            <button
+                id="enrollment-button"
+                class="btn btn-sm {% if student.enrolled %}btn-success{% else %}btn-secondary{% endif %}"
+                data-student-id="{{ student.pk }}"
+            >
+                {% if student.enrolled %} Enrolled {% else %} Not Enrolled {% endif %}
+            </button>
+            <a href="{% url 'edit_student' pk=student.pk %}" class="btn btn-success">Edit</a>
+            <a href="{% url 'delete_student' pk=student.pk %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const enrollmentButton = document.getElementById('enrollment-button');
+            const enrolledStatus = document.getElementById('enrolled-status');
+            enrollmentButton.addEventListener('click', function() {
+                const studentId = this.dataset.studentId;
+                const url = `{% url 'toggle_enrollment' %}`;
+                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({ student_id: studentId }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.enrolled) {
+                        enrollmentButton.classList.remove('btn-secondary');
+                        enrollmentButton.classList.add('btn-success');
+                        enrollmentButton.textContent = 'Enrolled';
+                        enrolledStatus.textContent = 'Yes';
+                    } else {
+                        enrollmentButton.classList.remove('btn-success');
+                        enrollmentButton.classList.add('btn-secondary');
+                        enrollmentButton.textContent = 'Not Enrolled';
+                        enrolledStatus.textContent = 'No';
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

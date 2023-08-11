@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Add Course</h1>
+<form method="post">
+{% csrf_token %}
+        <div class="form-group">
+            <label for="course_name">course_name:</label>
+            {{ form.course_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="desscription">Description:</label>
+            {{ form.description }}
+        </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block title %}Add Student
+{% endblock %} 
+{% block content %}
+<h1>Add Student</h1>
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="id_name">Name:</label>
+    <input type="text" class="form-control" id="id_name" name="name" required />
+  </div>
+  <div class="form-group">
+    <label for="id_reg_no">Registration Number:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="id_reg_no"
+      name="reg_no"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="id_course_name">Course:</label>
+    {{ form.course_name }}
+  </div>
+  <div class="form-group">
+    <label for="unit_code">unit_code:</label>
+    {{ form.unit_code }}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock%}

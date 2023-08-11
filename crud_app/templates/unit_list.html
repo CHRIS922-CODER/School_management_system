@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Student List{% endblock %}
+
+{% block content %}
+    <h1>Unit List</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+                <tr>
+                    <th>course_id</th>
+                    <th>unit Code</th>
+                    <th>title</th>
+                    <th>cat1</th>
+                    <th>cat2</th>
+                    <th>cat3</th>
+                    <th>final_exam</th>
+                    <th>Actions</th>
+                    
+                {% for unit in units %}
+                    <tr>
+                        <td>{{ unit.course_name }}</td>
+                        <td>{{ unit.unit_code }}</td>
+                        <td>{{ unit.title }}</td>
+                        <td>{{ unit.cat1 }}</td>
+                        <td>{{ unit.cat2 }}</td>
+                        <td>{{ unit.cat3 }}</td>
+                        <td>{{unit.final_exam }}</td>
+                        <td>
+                            <a href="{% url 'edit_unit' pk=unit.pk %}" class="btn btn-success btn-sm">Edit</a>
+                            <a href="{% url 'delete_unit' pk=unit.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

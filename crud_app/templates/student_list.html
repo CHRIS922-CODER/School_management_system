@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Student List{% endblock %}
+
+{% block content %}
+    <h1>Student List</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Course</th>
+                    <th>Unit Code</th>
+                    <th>Enrolled</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.reg_no }}</td>
+                        <td>{{ student.course_name }}</td>
+                        <td>{{ student.unit_code }}</td>
+                        <td>
+                            {% if student.enrolled %}
+                            <a class="btn btn-sm btn-secondary">Enrolled</a>
+
+                            {% else %}
+                            <a class="btn btn-sm btn-success" href="{% url 'enroll' pk=student.pk %}">Enroll</a>
+
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'student_detail' pk=student.pk %}" class="btn btn-primary btn-sm">View</a>
+                            <a href="{% url 'edit_student' pk=student.pk %}" class="btn btn-success btn-sm">Edit</a>
+                            <a href="{% url 'delete_student' pk=student.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

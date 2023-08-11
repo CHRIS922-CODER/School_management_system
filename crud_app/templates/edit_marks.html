@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Student{% endblock %}
+
+{% block content %}
+    <h1>Edit Unit</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="student">Student :</label>
+            <input type="text" class="form-control" id="cat1" name="cat1" value="{{ student.cat1 }}" required>
+        </div>
+        <div class="form-group">
+            <label for="unit">Unit :</label>
+            <input type="text" class="form-control" id="cat1" name="cat1" value="{{ unit.cat1 }}" required>
+        </div>
+        <div class="form-group">
+            <label for="cat1">cat1:</label>
+            <input type="text" class="form-control" id="cat1" name="cat1" value="{{ unit.cat1 }}" required>
+        </div>
+        <div class="form-group">
+            <label for="cat2">cat2:</label>
+            <input type="text" class="form-control" id="cat2" name="cat2" value="{{ unit.cat2 }}" required>
+        </div>
+        <div class="form-group">
+            <label for="cat3">cat3:</label>
+            <input type="text" class="form-control" id="cat3" name="cat3" value="{{ unit.cat3 }}" required>
+        </div>
+        <div class="form-group">
+            <label for="exam_marks">exam_marks:</label>
+            <input type="text" class="form-control" id="exam_marks" name="exam_marks" value="{{ unit.exam_marks }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+{% endblock %}
